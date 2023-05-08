@@ -13,7 +13,7 @@ alx-higher_level_programming
 </p>
 
 <p align="center">
-alx-higher_level_programming contains programs assignments that i do on daily basis to learn more on Python.The projects are checked By ALX_Program in orders to make sure i learn python with all hands on Deck.
+alx-higher_level_programming contains programs assignments that I do on daily basis to learn more on Python. The projects are checked By ALX-Program in orders to make it passes all the checks.
 </p>
 
 
