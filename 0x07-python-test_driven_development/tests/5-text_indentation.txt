@@ -1,105 +1,68 @@
+# The ``5-text_indentation`` module
 ============================================
-''' This is the Start of Unit Testing... '''
+How to use 5-text_indentation.py
 ============================================
-''' TESTTING WITH the following... '''
 
-''' Does the same as test below, but gives more details '''
-# python3 -m doctest -v ./tests/5-text_indentation.txt
-# python3 -m doctest -v ./5-text_indentation.txt | tail -2
+This library has one function called ``text_indentation()``
 
-======================================
-''' Importing TEMPLATE function''''
-======================================
->>> text_indentation = __import__('5-text_indentation').text_indentation
+``text_indentation()`` prints a text with 2 new lines after each of these
+characters: ., ? and :
 
-==============
-SUCCESS CASES
-==============
+Importing the function matrix_divided.
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
 
+Passing the given text.
+    >>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere?""")
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <BLANKLINE>
+    Quonam modo?
+    <BLANKLINE>
+    Utrum igitur tibi litteram videor an totas paginas commovere?
+    <BLANKLINE>
 
-Category 1
-==========
+Passing an empty string as text.
+    >>> text_indentation("")
 
-Test 1: Normal input.
->>> text_indentation("A wizard is never late Frodo Baggins. Nor is he early? He arrives precisely when he means to.")
-A wizard is never late Frodo Baggins.
-<BLANKLINE>
-Nor is he early?
-<BLANKLINE>
-He arrives precisely when he means to.
-<BLANKLINE>
+Passing a text with space at the beginning.
+    >>> text_indentation("        Hello Breezy")
+    Hello Breezy
 
-Test 2: space at the beggining
->>> text_indentation("  Bilbo Baggins. Of the Shires.")
-Bilbo Baggins.
-<BLANKLINE>
-Of the Shires.
-<BLANKLINE>
+Printing a word with spaces around it.
+    >>> text_indentation("    Villegas    ")
+    Villegas
 
+Printing a word with a special character at the end.
+    >>> text_indentation("    Hello    .")
+    Hello.
+    <BLANKLINE>
 
-Test : single string, now newline
->>> text_indentation("Gandalf")
-Gandalf
+Passing a text with space between words and a special character at end.
+    >>> text_indentation("What is up baby doll?    how are you?")
+    What is up baby doll?
+    <BLANKLINE>
+    how are you?
+    <BLANKLINE>
 
-Test : some ignore
->>> text_indentation(" Hello: There ")
-Hello:
-<BLANKLINE>
-There
+Passing a non-string as text.
+    >>> text_indentation(123)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
 
+Passing None as text:
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
 
-Test 4: with "." and "?"
->>> text_indentation("Hola?.")
-Hola?
-<BLANKLINE>
-.
-<BLANKLINE>
+Passing no arguments to text_indentation.
+    >>> text_indentation()
+    Traceback (most recent call last):
+        ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
 
-==========================
-CASES THAT SHOULD NOT WORK
-==========================
-
-Category 2
-==========
-
-Test 3: none
->>> text_indentation(None)
-Traceback (most recent call last):
-...
-TypeError: text must be a string
-
-
-Test 4: add int
->>> text_indentation(5)
-Traceback (most recent call last):
-...
-TypeError: text must be a string
-
-Test 5: negative int
->>> text_indentation(-2)
-Traceback (most recent call last):
-...
-TypeError: text must be a string
-
-
-Test 6: float
->>> text_indentation(2.4)
-Traceback (most recent call last):
-...
-TypeError: text must be a string
-
-
-Test 7: negative float
->>> text_indentation(-3.2)
-Traceback (most recent call last):
-...
-TypeError: text must be a string
-
-Test 8: no args
->>> text_indentation()
-Traceback (most recent call last):
-...
-TypeError: text_indentation() missing 1 required positional argument: 'text'
-
-
-
+Passing more than one argument to text_indentation.
+    >>> text_indentation("Hola", "Commo Estas") #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+        ...
+    TypeError: text_indentation() takes 1 positional argument but ...

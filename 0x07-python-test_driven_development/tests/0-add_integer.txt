@@ -1,132 +1,234 @@
+# The ``0-add_integer`` module
 ============================================
-''' This is the Start of Unit Testing... '''
+How to use 0-add_integer.py
 ============================================
-''' TESTTING WITH the following... '''
 
-''' Does the same as test below, but gives more details '''
-# python3 -m doctest -v ./tests/0-add_integer.txt
-# python3 -m doctest -v ./tests/0-add_integer.txt | tail -2
+This library has one function called ``add_integer()``
 
-======================================
-''' Importing TEMPLATE function''''
-======================================
->>> add_integer = __import__('0-add_integer').add_integer
+Numbers
+=======
 
+``add_integer()`` returns the sum of its arguments. The default argument
+for b is 98. For numbers, that value is equivalent to using the ``+``
+operator:
 
-==============
-SUCCESS CASES
-==============
+Importing the function add_integer.
+    >>> add_integer = __import__('0-add_integer').add_integer
+	>>> add_integer(1, 2)
+	3
 
+Non-Numbers
+===========
 
-Category 1
-==========
+Because add_integer() doesn't take non-numbers it should throw an error
+if a non-number is passed as one of its arguments.
 
+Adding an integer and a float.
+	>>> add_integer(2, 3.0) #doctest: +REPORT_NDIFF
+	5
 
-test 1: two integers 
->>> add_integer(3, 3)
-6
+Adding a float and an integer.
+	>>> add_integer(3.0, 3)
+	6
 
-Test 2: a is a float
->>> add_integer(3.14, 98)
-101
+Passing one argument.
+    >>> add_integer(2)
+    100
 
-Test 3: b is a float
->>> add_integer(98, 3.14)
-101
+Adding a positive and negative integer.
+    >>> add_integer(2, -4)
+    -2
 
+Adding a negative and positive integer.
+    >>> add_integer(-6, 8)
+    2
 
-Test 4: two zeros
->>> add_integer(0, 0)
-0
+Adding an integer and a bool.
+    >>> add_integer(4, True)
+    5
 
-Test 5: a is float, b is negative
->>> add_integer(100.3, -2)
-98
+Adding a bool and integer.
+    >>> add_integer(True, 4)
+    5
 
-Test 6: a is negative, b is a float
->>> add_integer(-2, 100.3)
-98
+Adding two bools.
+    >>> add_integer(False, True)
+    1
 
-Test 7: a is negative, b is negative
->>> add_integer(-2, -5)
--7
+Adding two bools.
+    >>> add_integer(True, True)
+    2
 
-Test 8: a is a negative float
->>> add_integer(-10.5, 7)
--3
+Passing one bool argument.
+    >>> add_integer(True, )
+    99
 
-Test 9: b is skipped, default val of 98
->>> add_integer(2)
-100
+Adding an integer and a bool.
+    >>> add_integer(4, False)
+    4
 
+Adding a bool and n integer.
+    >>> add_integer(False, 4)
+    4
 
-Test 10:a is negative float, b is a negative float
->>> add_integer(-2.5, -2.5)
--4
+Adding two bools.
+    >>> add_integer(True, False)
+    1
 
+Adding two bools.
+    >>> add_integer(False, False)
+    0
 
+Passing one bool argument.
+    >>> add_integer(False, )
+    98
 
-==========================
-CASES THAT SHOULD NOT WORK
-==========================
+Adding two float values.
+    >>> add_integer(3.0, 9.0) #doctest: +REPORT_NDIFF
+    12
 
-Category 2
-==========
+Adding two float values.
+    >>> add_integer(12.3, 9.0) #doctest: +REPORT_NDIFF
+    21
 
+Adding two float values.
+    >>> add_integer(12.3, 9.8) #doctest: +REPORT_NDIFF
+    21
 
-Test 10: b is a string
->>> add_integer(7, "hello")
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
+Passing None as the only argument.
+    >>> add_integer(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
 
+Adding an integer and None.
+    >>> add_integer(2, None)
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
 
-Test 11: a is a string
->>> add_integer("hello", 7)
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
+Adding a string and an integer.
+	>>> add_integer('a', 3)
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
 
-Test 12: a is None
->>> add_integer(None, 30)
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
+Adding a tuple and integer.
+	>>> add_integer((), 3)
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
 
-Test 13: b is None
->>> add_integer(30, None)
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
+Adding a set and an integer.
+	>>> add_integer({}, 3)
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
 
-Test 14:both args are skipped
->>> add_integer()
-Traceback (most recent call last):
-...
-TypeError: add_integer() missing 1 required positional argument: 'a'
+Adding a list and an integer.
+    >>> add_integer([], 3)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
 
-Test 15: complex numbers
->>> add_integer (10e670**2, 1)
-Traceback (most recent call last):
-...
-OverflowError: cannot convert float infinity to integer
+Adding an integer and a string.
+	>>> add_integer(2, '3')
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
 
+Adding an integer and a tuple.
+	>>> add_integer(2, ())
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
 
-Test 16: Invalid Syntax
->>> add_integer (-7e, 10)
-Traceback (most recent call last):
-...
-SyntaxError: invalid syntax
+Adding an integer and a set.
+	>>> add_integer(2, {})
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
 
+Adding an integer and a set.
+    >>> add_integer(3, [])
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
 
-Test 17: NaN
->>> add_integer (float("NaN"), 10)
-Traceback (most recent call last):
-...
-ValueError: cannot convert float NaN to integer
+Passing a tuple as the only argument.
+    >>> add_integer((3, 4))
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
 
-Test 18:
->>> add_integer()
-Traceback (most recent call last):
-...
-TypeError: add_integer() missing 1 required positional argument: 'a'
+Adding a nan and an integer.
+    >>> add_integer(float("nan"), 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: cannot convert float NaN to integer
+
+Adding an integer and a nan.
+    >>> add_integer(1, float('nan'))
+    Traceback (most recent call last):
+        ...
+    ValueError: cannot convert float NaN to integer
+
+Adding an integer and a positive undefined number.
+    >>> add_integer(1, float('inf'))
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+Adding an integer and a negative undefined number.
+    >>> add_integer(1, float('-inf'))
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+Adding a positive undefined number and an integer.
+    >>> add_integer(float('inf'), 1)
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+Adding a negative undefined number and an integer.
+    >>> add_integer(float('-inf'), 1)
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+Passing more than 2 arguments to the function.
+	>>> add_integer(2, 3, 5, 6) #doctest: +ELLIPSIS
+	Traceback (most recent call last):
+		...
+	TypeError: add_integer() takes from 1 to 2 positional arguments but ...
+
+Passing only the second argument.
+    >>> add_integer(, 3)
+    Traceback (most recent call last):
+        ...
+    SyntaxError: invalid syntax
+
+Passing only a symbol.
+    >>> add_integer(,)
+    Traceback (most recent call last):
+        ...
+    SyntaxError: invalid syntax
+
+Passing only a symbol.
+    >>> add_integer(/)
+    Traceback (most recent call last):
+        ...
+    SyntaxError: invalid syntax
+
+Passing an undefined variable.
+    >>> add_integer(b) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+        ...
+    NameError: name ... is not defined
+
+Passing 0 arguments.
+    >>> add_integer()
+    Traceback (most recent call last):
+        ...
+    TypeError: add_integer() missing 1 required positional argument: 'a'
